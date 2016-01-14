@@ -1,0 +1,15 @@
+setwd("c:/test/specdata")
+files <- list.files()
+files
+# read the files into a list of data.frames
+data.list <- lapply(files, function(.file){
+  dat<-read.csv(.file, header = T)
+  dat$ID<-as.character(.file)
+  dat
+})
+# concatenate into one big data.frame
+data.cat <- do.call(rbind, data.list)
+write.csv(data.cat, file = "data_list.csv")
+#tapply(data.cat$sulfate, data.cat$ID(c1:10), mean)
+dat_ID_1to20<-subset(data.cat, data.cat$ID>0 & data.cat$ID<21, na.rm=T)
+summary(dat_ID_1to20)
