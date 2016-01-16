@@ -1,4 +1,8 @@
 #COMPLETE
+## Return a data frame of the form:
+  ## id nobs
+  ## 1  117
+  ## 2  1041
 setwd("c:/test/specdata")
 (directory <- getwd())
 complete <- function(directory, id = 1:332) {
@@ -9,3 +13,5 @@ return (sum(complete.cases(read.csv(path))))
 return (data.frame(id=id, nobs=sapply(id, nobs)))
 }
 complete(directory, 1:332)
+#option2: complete(directory, c(2, 4, 8, 10, 12))
+#option3:complete(directory, 30:25)
