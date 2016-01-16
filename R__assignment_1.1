@@ -27,7 +27,7 @@ data.cat <- do.call(rbind, data.list)
 #summarise subset(s)
 subset_1<-subset(data.cat, ID==23)
 summary(subset_1)
-subset_2<-subset(data.cat, ID=c(70,71,72))
+subset_2<-subset(data.cat, ID<-c(70,71,72))
 summary(subset_2)
 
 #WRITE
