@@ -1,3 +1,16 @@
+#GETMONITOR
+setwd("c:/test/specdata")
+(directory <- getwd())
+getmonitor <- function(id, directory, summarize=FALSE) {
+    path <- file.path(directory, paste(sprintf("%03d", as.numeric(id)), ".csv", sep=""))
+  data <- read.csv(path)
+  if (summarize)
+    summary(data)
+  return (data)
+}
+summary(getmonitor(id=23, directory, summarize=FALSE))
+
+#SUMMARIZE
 setwd("c:/test/specdata")
 files <- list.files()
 
