@@ -1,0 +1,18 @@
+#CORRELATION
+#the correlation between sulfate and nitrate for monitor locations where the number of completely observed
+#cases (on all variables) is greater than the threshold. 
+setwd("c:/test/specdata")
+(directory <- getwd())
+corr <- function(directory, threshold = 150) {
+   tcorr <- function(fname) {
+    data <- read.csv(file.path(directory, fname))
+    nobs <- sum(complete.cases(data))
+    if (nobs > threshold) {
+      return (cor(data$nitrate, data$sulfate, use="complete.obs"))
+    }
+  }
+  tcorrs <- sapply(list.files(directory), tcorr) #get all correlations + NULLs
+  tcorrs <- unlist(tcorrs[!sapply(tcorrs, is.null)]) #remove NULLs
+  return (tcorrs)
+}
+corr (directory, threshold = 150)#for a threshold of 150 complete obs (nobs)
